@@ -1,5 +1,5 @@
 <template>
-    <div id="profile-container" class="tab active">
+    <div id="profile-container">
         <div id="profile">
             <div class="avatar">
                 <img src="../../src/assets/me.png" id="picture" alt="My picture">
@@ -29,5 +29,49 @@
 </script>
 
 <style scoped>
+    #profile {
+        border-bottom: 1px dashed #a7a7a7;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    #profile .avatar {
+        width: 35%;
+        text-align: center;
+    }
+    #profile .info {
+        width: 45%;
+    }
+
+    #profile #gpa {
+        width: 20%;
+    }
+    #profile div:not(.clear-fix) {
+        height: 190px;
+        float: left;
+        position: relative;
+    }
+
+
+    #profile .avatar img {
+        width: 180px;
+    }
+
+
+    #profile #gpa strong {
+        position: absolute;
+        width: 100%;
+        height: 60px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto auto;
+        font-size: 60px;
+        line-height: 60px;
+        text-align: center;
+    }
+    .clear-fix {
+        clear: both;
+    }
 
 </style>

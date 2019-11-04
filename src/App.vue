@@ -5,18 +5,21 @@
         </header>
         <section id="container">
             <section id="main">
-                <div  class="content">
+                <div class="content">
                     <Profile v-if="selectedProfile" :user="user"/>
-                    <Courses v-if="!selectedProfile" :courses="courses"/>
+                    <Courses v-else :courses="courses" :add-course="addCourse"/>
                 </div>
                 <div class="controls">
-
-                    <button id="profile-button" :class="{'pill active' : selectedProfile, 'pill' : !selectedProfile}" @click="selectedProfile = true">Profile</button>
-                    <button id="courses-button" :class="{'pill' : selectedProfile, 'pill active' : !selectedProfile}" @click="selectedProfile = false">Courses</button>
+                    <button id="profile-button" :class="{'pill active' : selectedProfile, 'pill' : !selectedProfile}"
+                            @click="selectedProfile = true">Profile
+                    </button>
+                    <button id="courses-button" :class="{'pill' : selectedProfile, 'pill active' : !selectedProfile}"
+                            @click="selectedProfile = false">Courses
+                    </button>
                 </div>
             </section>
         </section>
-        <footer>
+      <footer> <!--  Maybe this should be made into another vue component, as we need 4 in total-->
             <ul class="links">
                 <li>
                     <a href="https://ois2.ut.ee/" target="_blank">OIS</a>
@@ -39,12 +42,17 @@
         name: 'app',
         data: () => {
             return {
-                selectedProfile: true,
-                user: new User("John","Doe", "11/10/1990", "Software Engineering"),
-                courses: [new Course("Agile software development",1,82),
-                new Course("System modeling",1,85),
-                new Course ("Object-oriented programming",2,99),
-                new Course("Estonian language level A2",2,65)]
+                selectedProfile: true, //Used for changing styling between controller buttons
+                user: new User("John", "Doe", "11/10/1990", "Software Engineering"),
+                courses: [new Course("Agile software development", 1, 82),
+                    new Course("System modeling", 1, 85),
+                    new Course("Object-oriented programming", 2, 99),
+                    new Course("Estonian language level A2", 2, 65)]
+            }
+        },
+        methods:{
+            addCourse: function(courseName,semester,grade){ //Used so that Courses.vue doesn't need to import Course.js
+                this.courses.push(new Course(courseName,semester,grade));
             }
         },
         components: {Courses, Profile}
@@ -121,79 +129,10 @@
         margin: 0 auto;
     }
 
-    #profile {
-        border-bottom: 1px dashed #a7a7a7;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
-    }
-
-    #profile div:not(.clear-fix) {
-        height: 190px;
-        float: left;
-        position: relative;
-    }
-
-    #profile .avatar {
-        width: 35%;
-        text-align: center;
-    }
-
-    #profile .avatar img {
-        width: 180px;
-    }
-
-    #profile .info {
-        width: 45%;
-    }
-
-    #profile #gpa {
-        width: 20%;
-    }
-
-    #profile #gpa strong {
-        position: absolute;
-        width: 100%;
-        height: 60px;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto auto;
-        font-size: 60px;
-        line-height: 60px;
-        text-align: center;
-    }
 
     .content {
         padding: 10px;
         border: 1px solid #cbcbcb;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-
-    }
-
-    table th {
-        padding: 8px 12px;
-        text-align: left;
-        border: 1px solid #cbcbcb;
-        background-color: #03A9F4;
-        color: #ffffff;
-    }
-
-    table td {
-        padding: 8px 12px;
-        border: 1px solid #cbcbcb;
-    }
-
-    .content .tab {
-        display: none;
-    }
-
-    .content .tab.active {
-        display: block;
     }
 
     .controls .pill {
@@ -216,34 +155,7 @@
         cursor: pointer;
     }
 
-    .blue-button {
-        background-color: #2196F3;
-        color: #ffffff;
-        border: none;
-        padding: 10px 20px;
-    }
 
-    .green-button {
-        background-color: #69f378;
-        color: #ffffff;
-        border: none;
-        padding: 10px 10px;
-    }
 
-    .grey-button {
-        background-color: #e1e8e6;
-        color: #ffffff;
-        border: none;
-        padding: 10px 20px;
-    }
 
-    .input {
-        border: 1px solid #cccccc;
-        padding: 10px 20px;
-        min-width: 135px;
-    }
-
-    #add-course {
-        display: none;
-    }
 </style>
