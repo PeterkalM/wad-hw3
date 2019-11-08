@@ -68,9 +68,20 @@ export default {
             return false;
         },
         calculateGPA: function() {
-            //TODO: GPA calculation
-            //return Math.round(..*100)/100;
-            return 0;
+            let points = 0;
+            for (let i = 0; i < this.courses.length; i++) {
+                if (this.courses[i].grade > 90)
+                    points += 4;
+                else if (this.courses[i].grade > 80)
+                    points += 3;
+                else if (this.courses[i].grade > 70)
+                    points += 2;
+                else if (this.courses[i].grade > 60)
+                    points += 1;
+                else if (this.courses[i].grade > 50)
+                    points += 0.5;
+            }
+            return Math.round(points*100/this.courses.length)/100;
         }
     },
     components: {
