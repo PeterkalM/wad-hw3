@@ -2,13 +2,13 @@
     <header>
         <strong>Welcome to your dashboard!</strong>
     </header>
-</template>>
+</template>
 
 <script>
 export default {
     name: "Header"
 };
-</script>>
+</script>
 
 <style scoped>
 header {
@@ -19,4 +19,4 @@ header {
     margin-bottom: 10px;
     height: 60px;
 }
-</style>>
+</style>
